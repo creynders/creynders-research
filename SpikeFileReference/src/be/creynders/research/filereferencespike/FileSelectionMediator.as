@@ -16,11 +16,10 @@ package be.creynders.research.filereferencespike
 		public var view : FileSelectionView;
 		
 		override public function onRegister():void{
-			this.eventMap.mapListener( view.saveFileButton, MouseEvent.CLICK, _onMouseClick, MouseEvent );
+			view.saveFileSignal.add( this._onMouseClick );
 		}
 		
-		private function _onMouseClick( e : Event ) : void {
-			e.stopImmediatePropagation();
+		private function _onMouseClick( e : MouseEvent ) : void {
 			this.dispatch( new SaveFileEvent( SaveFileEvent.SAVE_FILE ) );
 		}
 	}
